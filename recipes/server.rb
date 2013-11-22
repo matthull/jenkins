@@ -106,7 +106,7 @@ ruby_block 'block_until_operational' do
     end
 
     Chef::Log.info 'Waiting until the Jenkins API is responding'
-    test_url = URI.parse("#{node['jenkins']['server']['url']}/api/json")
+    test_url = URI.parse("#{node['jenkins']['server']['url']}:#{node['jenkins']['server']['port']}/api/json")
     until JenkinsHelper.endpoint_responding?(test_url)
       sleep 1
       Chef::Log.debug('.')
